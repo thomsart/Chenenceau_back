@@ -1,12 +1,13 @@
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
 from .models import ProductCategory
 from .serializers import ProductCategorySerializer
 
 
-
+# @permission_classes([AllowAny])
 @api_view(['GET', 'POST'])
 def product_category_list(request):
     """
@@ -25,8 +26,8 @@ def product_category_list(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-
 @api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
 def product_category_detail(request, pk):
     """
     Retrieve, update or delete a product category.

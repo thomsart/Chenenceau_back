@@ -1,12 +1,14 @@
+from re import A
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
 from .models import Product
 from .serializers import ProductSerializer
 
 
-
+@permission_classes([AllowAny])
 @api_view(['GET', 'POST'])
 def product_list(request):
     """
@@ -25,7 +27,7 @@ def product_list(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-
+@permission_classes([IsAuthenticated])
 @api_view(['GET', 'PUT', 'DELETE'])
 def product_detail(request, pk):
     """
