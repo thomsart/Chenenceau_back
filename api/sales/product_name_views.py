@@ -1,5 +1,6 @@
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
 from .models import ProductName
@@ -8,6 +9,7 @@ from .serializers import ProductNameSerializer
 
 
 @api_view(['GET', 'POST'])
+# @permission_classes([AllowAny])
 def product_name_list(request):
     """
     List all product names, or create a new one.
@@ -27,6 +29,7 @@ def product_name_list(request):
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
 def product_name_detail(request, pk):
     """
     Retrieve, update or delete a product name.

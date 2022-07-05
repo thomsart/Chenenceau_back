@@ -1,5 +1,0 @@
-
-
-
-
-# @permission_classes([IsAuthenticated])

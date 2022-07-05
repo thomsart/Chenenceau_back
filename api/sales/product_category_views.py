@@ -7,8 +7,9 @@ from .models import ProductCategory
 from .serializers import ProductCategorySerializer
 
 
-# @permission_classes([AllowAny])
+
 @api_view(['GET', 'POST'])
+# @permission_classes([AllowAny])
 def product_category_list(request):
     """
     List all product categories, or create a new one.

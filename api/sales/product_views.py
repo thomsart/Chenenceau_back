@@ -1,4 +1,3 @@
-from re import A
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -8,8 +7,9 @@ from .models import Product
 from .serializers import ProductSerializer
 
 
-@permission_classes([AllowAny])
+
 @api_view(['GET', 'POST'])
+# @permission_classes([AllowAny])
 def product_list(request):
     """
     List all products, or create a new one.
